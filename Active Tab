@@ -1,0 +1,32 @@
+var currentUrl = window.location.href;
+var hasTabId = currentUrl.indexOf('tab_id') !== -1;
+if(hasTabId) {
+var urlParams = new URLSearchParams(currentUrl.split('?')[1]);
+var tabId = urlParams.get('tab_id');
+var tabsId = "et_pb_tab_"+tabId;
+var tabs = document.querySelectorAll('.et_pb_tabs_controls li');
+
+// Loop through each tab
+tabs.forEach(function(tab) {
+    // Check if this tab is the one we want to activate
+    if (tab.classList.contains(tabsId)) {
+        // Add 'active' class to the tab
+        tab.classList.add('et_pb_tab_active');
+    } else {
+        // Remove 'active' class from all other tabs
+        tab.classList.remove('et_pb_tab_active');
+    }
+});
+
+var tabsCont = document.querySelectorAll('.et_pb_all_tabs .et_pb_tab');
+
+// Loop through each tab
+tabsCont.forEach(function(tab) {
+    // Check if this tab is the one we want to activate
+    if (tab.classList.contains(tabsId)) {
+        tab.style.display = 'block';
+    } else {
+        tab.style.display = 'none';
+    }
+});
+}
